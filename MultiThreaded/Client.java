@@ -1,4 +1,3 @@
-package MultiThreaded;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -23,7 +22,7 @@ public class Client {
                 Socket socket= new Socket(address,port);
                 try{
 
-                    PrintWriter tosockeet = new PrintWriter(socket.getOutputStream());
+                    PrintWriter tosockeet = new PrintWriter(socket.getOutputStream(),true);
                     BufferedReader fromsocket = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                     tosockeet.println("hi from cleint");
                     String line = fromsocket.readLine();
@@ -53,7 +52,7 @@ public class Client {
 
             for(int i=0;i<100;i++)
             {
-                Thread thread = new Thread();
+                Thread thread = new Thread(client.getRunnable());
                 thread.start();
             }
 
